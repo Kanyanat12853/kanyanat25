@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanyanat Sanklong - Academic Portfolio</title>
+    <!-- Google Fonts: Kanit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Kanit', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .print-card {
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 glass-nav transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    K
+                </div>
+                <span class="font-semibold text-lg tracking-tight text-slate-900 dark:text-white">Kanyanat<span class="text-teal-600 dark:text-teal-400">.S</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">ข้อมูลส่วนตัว</a>
+                <a href="#education" class="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">ประวัติการศึกษา</a>
+                <a href="#family" class="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">ข้อมูลครอบครัว</a>
+                <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">การติดต่อ</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" class="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="เปลี่ยนธีม">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+                <button onclick="window.print()" class="no-print hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium transition-colors">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span>พิมพ์/พิมพ์ PDF</span>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+            <div class="px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
+                <a href="#about" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200">ข้อมูลส่วนตัว</a>
+                <a href="#education" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200">ประวัติการศึกษา</a>
+                <a href="#family" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200">ข้อมูลครอบครัว</a>
+                <a href="#contact" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200">การติดต่อ</a>
+                <button onclick="window.print()" class="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span>พิมพ์ / บันทึก PDF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 space-y-12 md:space-y-16">
+
+        <!-- Hero / Profile Banner -->
+        <section id="about" class="relative overflow-hidden rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-xl shadow-slate-200/50 dark:shadow-none p-6 sm:p-8 lg:p-10 transition-all">
+            <div class="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                <!-- Profile Image Component -->
+                <div class="relative group cursor-pointer flex-shrink-0" onclick="openModal('profileModal')">
+                    <div class="w-44 h-56 sm:w-52 sm:h-64 rounded-2xl overflow-hidden ring-4 ring-teal-500/20 dark:ring-teal-400/20 shadow-xl transition-all duration-300 group-hover:scale-[1.02] group-hover:ring-teal-500/40">
+                        <img src="IMG_8547.jpg" 
+                             onerror="this.src='https://placehold.co/400x500/0d9488/ffffff?text=Kanyanat+S.'" 
+                             alt="นางสาวกัญญาณัฐ สานคล่อง" 
+                             class="w-full h-full object-cover object-center">
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-slate-900/70 backdrop-blur-md text-white p-2 rounded-xl text-xs flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                        <span>ขยายรูป</span>
+                    </div>
+                </div>
+
+                <!-- Personal Brief -->
+                <div class="flex-1 text-center lg:text-left space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-700 dark:text-teal-300 text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                        นักศึกษา / นักเรียน
+                    </div>
+
+                    <div>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                            นางสาวกัญญาณัฐ สานคล่อง
+                        </h1>
+                        <p class="text-lg sm:text-xl font-medium text-teal-600 dark:text-teal-400 mt-1">
+                            ชื่อเล่น: มุก (Mook)
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                        ผู้มีความสนใจและมุ่งมั่นในการเรียนรู้ในสายวิทยาศาสตร์และสาธารณสุขศาสตร์ ปัจจุบันกำลังศึกษาต่อระดับอุดมศึกษาที่ วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น
+                    </p>
+
+                    <!-- Info Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-left">
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+                            <span class="text-xs text-slate-400 font-medium block">อายุ</span>
+                            <span class="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-200">19 ปี</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+                            <span class="text-xs text-slate-400 font-medium block">เกิดวันที่</span>
+                            <span class="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-200">12 ก.ย. 2550</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+                            <span class="text-xs text-slate-400 font-medium block">สัญชาติ / เชื้อชาติ</span>
+                            <span class="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-200">ไทย / ไทย</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic & Education Section -->
+        <section id="education" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400">
+                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ประวัติการศึกษา</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Educational Background</p>
+                </div>
+            </div>
+
+            <div class="relative border-l-2 border-teal-200 dark:border-teal-900 ml-4 sm:ml-6 space-y-8 pl-6 sm:pl-8 py-2">
+
+                <!-- Timeline item 4 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-teal-600 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-300">ระดับอุดมศึกษา (ปัจจุบัน)</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-2">วิทยาลัยการสาธารณสุขสิรินธร ขอนแก่น</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">สถาบันอุดมศึกษาด้านการสาธารณสุขและสุขภาพ</p>
+                    </div>
+                </div>
+
+                <!-- Timeline item 3 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-teal-500 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">ระดับมัธยมศึกษาตอนปลาย (ม.4 - ม.6)</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-2">โรงเรียนจักราชวิทยา</h3>
+                        <p class="text-sm text-teal-600 dark:text-teal-400 font-medium mt-1">แผนการเรียนวิทยาศาสตร์ - คณิตศาสตร์</p>
+                    </div>
+                </div>
+
+                <!-- Timeline item 2 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-teal-500 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">ระดับมัธยมศึกษาตอนต้น (ม.1 - ม.3)</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-2">โรงเรียนจักราชวิทยา</h3>
+                    </div>
+                </div>
+
+                <!-- Timeline item 1 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-teal-500 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">ระดับอนุบาล - ประถมศึกษาปีที่ 6</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-2">โรงเรียนชุมชนบ้านบุสามัคคีพัฒนา</h3>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Family Information -->
+        <section id="family" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ข้อมูลครอบครัว</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Family Background</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <!-- Father -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold flex-shrink-0">
+                        <i data-lucide="user" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-medium text-slate-400 block">บิดา</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">นายนิรัญ สานคล่อง</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 flex items-center gap-1.5">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-teal-600 dark:text-teal-400"></i>
+                            <span>อาชีพ: เกษตรกร</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mother -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold flex-shrink-0">
+                        <i data-lucide="user" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-medium text-slate-400 block">มารดา</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">นางวนัสนัน สานคล่อง</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 flex items-center gap-1.5">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-teal-600 dark:text-teal-400"></i>
+                            <span>อาชีพ: รับจ้าง</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ช่องทางการติดต่อ</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Contact Information</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Address Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <div class="flex items-center gap-3 text-slate-900 dark:text-white font-semibold text-lg">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-teal-600 dark:text-teal-400"></i>
+                        <span>ที่อยู่ตามภูมิลำเนา</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed" id="addressText">
+                        บ้านเลขที่ 77/18 หมู่ 13 ตำบลหนองระเวียง <br>
+                        อำเภอพิมาย จังหวัดนครราชสีมา 30110
+                    </p>
+                    <button onclick="copyText('บ้านเลขที่ 77/18 หมู่ 13 ตำบลหนองระเวียง อำเภอพิมาย จังหวัดนครราชสีมา 30110')" class="inline-flex items-center gap-2 text-xs font-medium text-teal-600 dark:text-teal-400 hover:underline">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        <span>คัดลอกที่อยู่</span>
+                    </button>
+                </div>
+
+                <!-- Contact Channels Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <div class="flex items-center gap-3 text-slate-900 dark:text-white font-semibold text-lg">
+                        <i data-lucide="phone-call" class="w-5 h-5 text-teal-600 dark:text-teal-400"></i>
+                        <span>ช่องทางออนไลน์ & โทรศัพท์</span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="phone" class="w-4 h-4 text-slate-500"></i>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-200">064-083-2035</span>
+                            </div>
+                            <button onclick="copyText('0640832035')" class="text-xs text-teal-600 dark:text-teal-400 font-medium hover:underline">คัดลอก</button>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="facebook" class="w-4 h-4 text-blue-600"></i>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Kanyanat Sanklong</span>
+                            </div>
+                            <span class="text-xs text-slate-400">Facebook</span>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Kanyanat_Sanklong</span>
+                            </div>
+                            <span class="text-xs text-slate-400">Instagram</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-center text-xs text-slate-500 dark:text-slate-400 no-print">
+        <p>© 2026 Kanyanat Sanklong. Academic Portfolio Website.</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2.5 rounded-xl shadow-lg text-sm font-medium transition-all duration-300 opacity-0 translate-y-4 pointer-events-none flex items-center gap-2">
+        <i data-lucide="check-circle" class="w-4 h-4 text-teal-400 dark:text-teal-600"></i>
+        <span id="toastMessage">คัดลอกลงคลิปบอร์ดเรียบร้อยแล้ว</span>
+    </div>
+
+    <!-- Image Modal Lightbox -->
+    <div id="profileModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity">
+        <div class="relative max-w-lg w-full bg-white dark:bg-slate-900 rounded-3xl p-4 overflow-hidden shadow-2xl">
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:scale-110 transition-transform">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <img src="IMG_8547.jpg" 
+                 onerror="this.src='https://placehold.co/600x800/0d9488/ffffff?text=Kanyanat+S.'" 
+                 alt="นางสาวกัญญาณัฐ สานคล่อง" 
+                 class="w-full h-auto max-h-[80vh] object-contain rounded-2xl">
+            <div class="mt-3 text-center">
+                <p class="font-medium text-slate-900 dark:text-white">นางสาวกัญญาณัฐ สานคล่อง (มุก)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Mobile Menu Drawer
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Copy Clipboard Helper
+        function copyText(text) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('คัดลอกเรียบร้อยแล้ว!');
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = msg;
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
